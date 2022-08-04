@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>WebPoses</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.4.0"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+  <link rel="stylesheet" href="css/bootstrap-4.4.1.min.css">
+  <link rel="stylesheet" href="css/bootstrap4-toggle-3.6.1.min.css">
+  <link rel="stylesheet" href="css/jquery-ui-1.13.2.min.css">
+  <link rel="stylesheet" href="css/base-timer.css">
+  <link rel="stylesheet" href="css/alertify-1.13.1.min.css">
+  <link rel="stylesheet" href="css/alertify-bootstrap-1.13.1.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="row small justify-content-center mb-2" style="border-bottom: 1px solid;">
+      <div class="col-auto text-center">
+          <h2 class="display-4">WebPoses</h2>
+          <h3 class="display-6">Data Collection</h3>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div id="firstCol" style="flex: 0 0 520px; -ms-flex: 0 0 520px;">
+
+        <div style="width: 100%; text-align: center;">
+          <div style="display: inline-block;">
+            <video id="video" width="514" height="514" playsinline style="display: none;">
+            </video>
+            <canvas id="canvas" width="514" height="514"/>
+          </div>
+        </div>
+
+        &nbsp;<br>
+        <div class="row">
+          <div class="col d-flex justify-content-center">
+            <input type="checkbox" data-toggle="toggle" data-on="Estimate" data-off="Estimate" data-onstyle="success" data-offstyle="danger" id="estimatePoses">
+          </div>
+          <div class="col d-flex justify-content-center">
+            <input type="checkbox" data-toggle="toggle" data-on="Keypoints" data-off="Keypoints" data-onstyle="success" data-offstyle="danger" id="showKeypoints" checked="">
+          </div>
+          <div class="col d-flex justify-content-center">
+            <input type="checkbox" data-toggle="toggle" data-on="Skeleton" data-off="Skeleton" data-onstyle="success" data-offstyle="danger" id="showSkeleton" checked="">
+          </div>
+        </div>
+
+        <br>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <label class="input-group-text" for="target">Target Class</label>
+          </div>
+          <input type="text" class="form-control" placeholder="" id="target" value="">
+          <input type="checkbox" data-toggle="toggle" data-on="On" data-off="Off" data-onstyle="success" data-offstyle="danger" id="collectPoses">
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="collectTime">Collect Time</label>
+              </div>
+              <input type="text" class="form-control" placeholder="" id="collectTime">
+              <span class="d-inline p-1 mt-1">seconds</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="input-group align-middle">
+              <div class="input-group-prepend">
+                <label class="input-group-text" for="warningTime">Warning time</label>
+              </div>
+              <input type="text" class="form-control" placeholder="" id="warningTime">
+              <span class="d-inline p-1 mt-1">seconds</label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-4">
+
+        <br>
+
+        <div id="keypointsDiv" style="display: block;">
+          <table class="table table-sm small" id="keypointsTable">
+            <thead>
+              <tr>
+                <th scope="col">Joint</th>
+                <th scope="col">Position</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+
+        <div id="scoreDiv" style="display: block;">
+          <table class="table table-sm small" id="scoreTable">
+            <thead>
+              <tr>
+                <th scope="col">Score</th>
+                <th scope="col" id="scoreTD" align="right">-</th>
+              </tr>
+            </thead>
+            <tbody>            
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+
+        <div id="countersDiv" style="display: none;">
+          <table class="table table-sm small" id="countersTable">
+            <thead>
+              <tr>
+                <th scope="col">Target class label</th>
+                <th scope="col">#</th>
+              </tr>
+            </thead>
+            <tbody>            
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+
+        <div class="row justify-content-center small form-row">
+          <div class="col-auto border-primary rounded pb-2 small">
+            <form>
+                  <label class="sr-only" for="dataFileName">DataFile Name</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">DataFile Name</div>
+                    </div>
+                    <input type="text" class="form-control" id="dataFileName" placeholder="..." style="width: 200px;">
+                  </div>
+            </form>
+          </div>
+        </div>
+
+        <div id="buttonsDiv" style="text-align: center; display: none;">
+          <input type="button" value="Save" class="btn btn-outline-primary btn-sm" id="saveDataset" style="width: 80px">
+          <input type="button" value="Clear" class="btn btn-outline-danger btn-sm" id="clearMemory" style="width: 80px">
+        </div>
+        <div id="buttonsDiv" style="text-align: center;">
+          <input type="button" value="Close" class="btn btn-outline-secondary btn-sm" id="close" style="width: 80px">
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="countdown"></div>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.13.2.min.js"></script>
+  <script type="text/javascript" src="js/popper-1.16.0.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-4.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap4-toggle-3.6.1.min.js"></script>
+  <script type="text/javascript" src="js/alertify-1.13.1.min.js"></script>
+  <script type="text/javascript" src="js/commons.js"></script>
+  <script type="text/javascript" src="js/base-timer.js"></script>
+  <script type="text/javascript" src="js/collect.js"></script>
+</body>
+
+</html>

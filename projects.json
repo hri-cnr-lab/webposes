@@ -1,0 +1,572 @@
+{
+  "projects": [
+    {
+      "id": "x000",
+      "name": "test",
+      "detectionType": "single",
+      "architecture": "ResNet50",
+      "outputStride": 32,
+      "inputResolution": 257,
+      "flipHorizontal": true,
+      "multiplier": 1,
+      "quantBytes": 2,
+      "createdBy": "",
+      "creationDate": "2020-03-30T10:14:15.310Z",
+      "lastModified": "2020-03-30T10:14:15.310Z",
+      "description": ""
+    }
+  ],
+  "datafiles": [
+    {
+      "project": "x000",
+      "network": {
+        "inputs": [
+          "leftShoulder",
+          "rightShoulder",
+          "leftElbow",
+          "rightElbow",
+          "leftWrist",
+          "rightWrist",
+          "leftHip",
+          "rightHip"
+        ],
+        "outputs": [
+          "EST",
+          "NORDEST",
+          "SUDEST",
+          "SUDOVEST",
+          "NORDOVEST",
+          "OVEST"
+        ]
+      },
+      "stats": {
+        "lines": 1582,
+        "targets": [
+          {
+            "target": "EST",
+            "count": 263
+          },
+          {
+            "target": "NORDEST",
+            "count": 264
+          },
+          {
+            "target": "SUDEST",
+            "count": 263
+          },
+          {
+            "target": "SUDOVEST",
+            "count": 263
+          },
+          {
+            "target": "NORDOVEST",
+            "count": 264
+          },
+          {
+            "target": "OVEST",
+            "count": 265
+          }
+        ]
+      },
+      "lastModified": "2020-11-16T15:05:28.819Z",
+      "creationDate": "2020-10-20T09:10:40.136Z",
+      "name": "direzioni",
+      "id": "21449481-d000-42e2-9c41-eb9f68b210e9"
+    },
+    {
+      "project": "x000",
+      "network": {
+        "inputs": [
+          "leftShoulder",
+          "rightShoulder",
+          "leftElbow",
+          "rightElbow",
+          "leftWrist",
+          "rightWrist",
+          "leftHip",
+          "rightHip"
+        ],
+        "outputs": [
+          "NONE"
+        ]
+      },
+      "stats": {
+        "lines": 263,
+        "targets": [
+          {
+            "target": "NONE",
+            "count": 263
+          }
+        ]
+      },
+      "lastModified": "2020-11-16T15:06:01.599Z",
+      "creationDate": "2020-11-03T14:11:58.016Z",
+      "name": "posizione neutra",
+      "id": "7d0def24-0f0d-401e-a28a-da89556a46da"
+    },
+    {
+      "project": "x000",
+      "network": {
+        "inputs": [
+          "leftShoulder",
+          "rightShoulder",
+          "leftElbow",
+          "rightElbow",
+          "leftWrist",
+          "rightWrist",
+          "leftHip",
+          "rightHip"
+        ],
+        "outputs": [
+          "EST",
+          "OVEST",
+          "NORDOVEST",
+          "SUDOVEST",
+          "SUDEST",
+          "NORDEST"
+        ]
+      },
+      "stats": {
+        "lines": 1058,
+        "targets": [
+          {
+            "target": "EST",
+            "count": 175
+          },
+          {
+            "target": "OVEST",
+            "count": 177
+          },
+          {
+            "target": "NORDOVEST",
+            "count": 176
+          },
+          {
+            "target": "SUDOVEST",
+            "count": 177
+          },
+          {
+            "target": "SUDEST",
+            "count": 176
+          },
+          {
+            "target": "NORDEST",
+            "count": 177
+          }
+        ]
+      },
+      "lastModified": "2020-11-16T15:06:28.337Z",
+      "creationDate": "2020-11-06T08:20:44.908Z",
+      "name": "incroci",
+      "id": "60203555-fbbb-41eb-a4c1-120ea20430fe"
+    }
+  ],
+  "datasets": [
+    {
+      "project": "x000",
+      "type": "Keypoints",
+      "description": "Built from: [\"21449481-d000-42e2-9c41-eb9f68b210e9\",\"7d0def24-0f0d-401e-a28a-da89556a46da\"]",
+      "stats": {
+        "lines": 1670,
+        "targets": [
+          {
+            "target": "EST",
+            "count": 263
+          },
+          {
+            "target": "NORDEST",
+            "count": 264
+          },
+          {
+            "target": "SUDEST",
+            "count": 263
+          },
+          {
+            "target": "SUDOVEST",
+            "count": 263
+          },
+          {
+            "target": "NORDOVEST",
+            "count": 264
+          },
+          {
+            "target": "OVEST",
+            "count": 265
+          },
+          {
+            "target": "NONE",
+            "count": 88
+          }
+        ]
+      },
+      "network": {
+        "inputs": [
+          "leftShoulder_x",
+          "leftShoulder_y",
+          "rightShoulder_x",
+          "rightShoulder_y",
+          "leftElbow_x",
+          "leftElbow_y",
+          "rightElbow_x",
+          "rightElbow_y",
+          "leftWrist_x",
+          "leftWrist_y",
+          "rightWrist_x",
+          "rightWrist_y",
+          "leftHip_x",
+          "leftHip_y",
+          "rightHip_x",
+          "rightHip_y"
+        ],
+        "outputs": [
+          "EST",
+          "NORDEST",
+          "SUDEST",
+          "SUDOVEST",
+          "NORDOVEST",
+          "OVEST",
+          "NONE"
+        ]
+      },
+      "creationDate": "2020-11-03T14:12:16.545Z",
+      "name": "kp",
+      "id": "547a2f11-2b2e-4f51-8ae7-57032723c65a"
+    },
+    {
+      "project": "x000",
+      "type": "3-joints angles",
+      "description": "Built from: [\"21449481-d000-42e2-9c41-eb9f68b210e9\",\"7d0def24-0f0d-401e-a28a-da89556a46da\"]",
+      "stats": {
+        "lines": 1670,
+        "targets": [
+          {
+            "target": "EST",
+            "count": 263
+          },
+          {
+            "target": "NORDEST",
+            "count": 264
+          },
+          {
+            "target": "SUDEST",
+            "count": 263
+          },
+          {
+            "target": "SUDOVEST",
+            "count": 263
+          },
+          {
+            "target": "NORDOVEST",
+            "count": 264
+          },
+          {
+            "target": "OVEST",
+            "count": 265
+          },
+          {
+            "target": "NONE",
+            "count": 88
+          }
+        ]
+      },
+      "network": {
+        "inputs": [
+          "leftShoulderAngle",
+          "leftShoulderInnerAngle",
+          "rightShoulderAngle",
+          "rightShoulderInnerAngle",
+          "leftElbowAngle",
+          "rightElbowAngle",
+          "leftHipAngle",
+          "rightHipAngle"
+        ],
+        "outputs": [
+          "EST",
+          "NORDEST",
+          "SUDEST",
+          "SUDOVEST",
+          "NORDOVEST",
+          "OVEST",
+          "NONE"
+        ]
+      },
+      "creationDate": "2020-11-04T10:18:11.258Z",
+      "name": "3j",
+      "id": "62bb482e-1361-4117-a4b5-964b260f3b49"
+    },
+    {
+      "project": "x000",
+      "type": "T-joints angles",
+      "description": "Built from: [\"21449481-d000-42e2-9c41-eb9f68b210e9\",\"7d0def24-0f0d-401e-a28a-da89556a46da\"]",
+      "stats": {
+        "lines": 1670,
+        "targets": [
+          {
+            "target": "EST",
+            "count": 263
+          },
+          {
+            "target": "NORDEST",
+            "count": 264
+          },
+          {
+            "target": "SUDEST",
+            "count": 263
+          },
+          {
+            "target": "SUDOVEST",
+            "count": 263
+          },
+          {
+            "target": "NORDOVEST",
+            "count": 264
+          },
+          {
+            "target": "OVEST",
+            "count": 265
+          },
+          {
+            "target": "NONE",
+            "count": 88
+          }
+        ]
+      },
+      "network": {
+        "inputs": [
+          "leftShoulder",
+          "rightShoulder",
+          "leftElbow",
+          "rightElbow",
+          "leftWrist",
+          "rightWrist",
+          "leftHip",
+          "rightHip"
+        ],
+        "outputs": [
+          "EST",
+          "NORDEST",
+          "SUDEST",
+          "SUDOVEST",
+          "NORDOVEST",
+          "OVEST",
+          "NONE"
+        ]
+      },
+      "creationDate": "2020-11-04T10:52:40.071Z",
+      "name": "translated",
+      "id": "a6be54b5-dc4d-48ff-851d-1d410bae8dee"
+    },
+    {
+      "project": "x000",
+      "type": "Keypoints",
+      "description": "Built from: [\"21449481-d000-42e2-9c41-eb9f68b210e9\",\"7d0def24-0f0d-401e-a28a-da89556a46da\",\"60203555-fbbb-41eb-a4c1-120ea20430fe\"]",
+      "stats": {
+        "lines": 2903,
+        "targets": [
+          {
+            "target": "EST",
+            "count": 438
+          },
+          {
+            "target": "NORDEST",
+            "count": 441
+          },
+          {
+            "target": "SUDEST",
+            "count": 439
+          },
+          {
+            "target": "SUDOVEST",
+            "count": 440
+          },
+          {
+            "target": "NORDOVEST",
+            "count": 440
+          },
+          {
+            "target": "OVEST",
+            "count": 442
+          },
+          {
+            "target": "NONE",
+            "count": 263
+          }
+        ]
+      },
+      "network": {
+        "inputs": [
+          "leftShoulder_x",
+          "leftShoulder_y",
+          "rightShoulder_x",
+          "rightShoulder_y",
+          "leftElbow_x",
+          "leftElbow_y",
+          "rightElbow_x",
+          "rightElbow_y",
+          "leftWrist_x",
+          "leftWrist_y",
+          "rightWrist_x",
+          "rightWrist_y",
+          "leftHip_x",
+          "leftHip_y",
+          "rightHip_x",
+          "rightHip_y"
+        ],
+        "outputs": [
+          "EST",
+          "NORDEST",
+          "SUDEST",
+          "SUDOVEST",
+          "NORDOVEST",
+          "OVEST",
+          "NONE"
+        ]
+      },
+      "creationDate": "2020-11-06T08:22:03.611Z",
+      "name": "kp-completo",
+      "id": "df7c3345-96bc-4150-aea4-d2820afb9b23"
+    }
+  ],
+  "networks": [
+    {
+      "project": "x000",
+      "dataset": "547a2f11-2b2e-4f51-8ae7-57032723c65a",
+      "name": "keypoints-ep100-bs32-vs01",
+      "type": "Keypoints",
+      "options": {
+        "task": "classification",
+        "inputs": [
+          "leftShoulder_x",
+          "leftShoulder_y",
+          "rightShoulder_x",
+          "rightShoulder_y",
+          "leftElbow_x",
+          "leftElbow_y",
+          "rightElbow_x",
+          "rightElbow_y",
+          "leftWrist_x",
+          "leftWrist_y",
+          "rightWrist_x",
+          "rightWrist_y",
+          "leftHip_x",
+          "leftHip_y",
+          "rightHip_x",
+          "rightHip_y"
+        ],
+        "outputs": [
+          "EST",
+          "NORDEST",
+          "SUDEST",
+          "SUDOVEST",
+          "NORDOVEST",
+          "OVEST",
+          "NONE"
+        ]
+      },
+      "lastModified": "2020-11-03T14:15:00.445Z",
+      "creationDate": "2020-11-03T14:15:00.445Z",
+      "id": "972f093e-52b0-41e6-9d99-67dfa7542e4f"
+    },
+    {
+      "project": "x000",
+      "dataset": "62bb482e-1361-4117-a4b5-964b260f3b49",
+      "name": "3joints-ep100-bs32-vs01",
+      "type": "3-joints angles",
+      "options": {
+        "task": "classification",
+        "inputs": [
+          "leftShoulderAngle",
+          "leftShoulderInnerAngle",
+          "rightShoulderAngle",
+          "rightShoulderInnerAngle",
+          "leftElbowAngle",
+          "rightElbowAngle",
+          "leftHipAngle",
+          "rightHipAngle"
+        ],
+        "outputs": [
+          "EST",
+          "NORDEST",
+          "SUDEST",
+          "SUDOVEST",
+          "NORDOVEST",
+          "OVEST",
+          "NONE"
+        ]
+      },
+      "lastModified": "2020-11-04T10:32:07.700Z",
+      "creationDate": "2020-11-04T10:32:07.700Z",
+      "id": "b5348b05-755d-4443-8365-bdb1dc4ca260"
+    },
+    {
+      "project": "x000",
+      "dataset": "a6be54b5-dc4d-48ff-851d-1d410bae8dee",
+      "name": "tjoints-ep100-bs32-vs01",
+      "type": "T-joints angles",
+      "options": {
+        "task": "classification",
+        "inputs": [
+          "leftShoulder",
+          "rightShoulder",
+          "leftElbow",
+          "rightElbow",
+          "leftWrist",
+          "rightWrist",
+          "leftHip",
+          "rightHip"
+        ],
+        "outputs": [
+          "EST",
+          "NORDEST",
+          "SUDEST",
+          "SUDOVEST",
+          "NORDOVEST",
+          "OVEST",
+          "NONE"
+        ]
+      },
+      "lastModified": "2020-11-04T10:57:47.035Z",
+      "creationDate": "2020-11-04T10:57:47.035Z",
+      "id": "43506e1b-75b3-4ef9-b91a-8786f61dbb2a"
+    },
+    {
+      "project": "x000",
+      "dataset": "df7c3345-96bc-4150-aea4-d2820afb9b23",
+      "name": "keypoints-100ep",
+      "type": "Keypoints",
+      "options": {
+        "task": "classification",
+        "inputs": [
+          "leftShoulder_x",
+          "leftShoulder_y",
+          "rightShoulder_x",
+          "rightShoulder_y",
+          "leftElbow_x",
+          "leftElbow_y",
+          "rightElbow_x",
+          "rightElbow_y",
+          "leftWrist_x",
+          "leftWrist_y",
+          "rightWrist_x",
+          "rightWrist_y",
+          "leftHip_x",
+          "leftHip_y",
+          "rightHip_x",
+          "rightHip_y"
+        ],
+        "outputs": [
+          "EST",
+          "NORDEST",
+          "SUDEST",
+          "SUDOVEST",
+          "NORDOVEST",
+          "OVEST",
+          "NONE"
+        ]
+      },
+      "lastModified": "2020-11-06T08:25:31.148Z",
+      "creationDate": "2020-11-06T08:25:31.148Z",
+      "id": "cb224680-015a-4a87-9065-a0e919a746a0"
+    }
+  ]
+}

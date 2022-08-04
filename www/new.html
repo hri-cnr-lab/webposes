@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>WebPoses</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="css/bootstrap-4.4.1.min.css">
+  <link rel="stylesheet" href="css/jquery-ui-1.13.2.min.css">
+  <link rel="stylesheet" href="css/alertify-1.13.1.min.css">
+  <link rel="stylesheet" href="css/alertify-bootstrap-1.13.1.min.css">
+  <link rel="stylesheet" href="css/new.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+        <!-- Top content -->
+            <div class="container text-center">
+                <h2 class="display-4">WebPoses</h1>
+                <br>&nbsp;<br>
+                <div class="row justify-content-center">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 border rounded-lg border-secondary">
+                      <form role="form" action="" method="post" class="f1">
+
+                        <h3>Create Project</h3>
+                        <p>Complete the steps to create a new PoseNet project</p>
+                        <div class="f1-steps mb-4">
+                          <div class="f1-progress">
+                              <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="4" style="width: 16.66%;"></div>
+                          </div>
+                          <div class="f1-step active">
+                            <div class="f1-step-icon"></div>
+                            <p>network</p>
+                          </div>
+                          <div class="f1-step">
+                            <div class="f1-step-icon"></div>
+                            <p>options</p>
+                          </div>
+                          <div class="f1-step">
+                            <div class="f1-step-icon"></div>
+                            <p>tuning</p>
+                          </div>
+                          <div class="f1-step">
+                            <div class="f1-step-icon"></div>
+                            <p>finalize</p>
+                          </div>
+                        </div>
+                        
+                        <fieldset>
+                          <h6 class="display-6">Choose a network model:</h5>
+                          <div class="form-group mt-3">
+                            <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
+                              <label class="btn btn-outline-secondary active mr-1">
+                                <input type="radio" name="architecture" value="MobileNetV1"> MobileNetV1
+                              </label>
+                              <label class="btn btn-outline-secondary ml-1">
+                                <input type="radio" name="architecture" value="ResNet50"> ResNet50
+                              </label>
+                            </div>
+                            <div class="f1-buttons mt-4">
+                                <button type="button" id="firstbutton" class="btn btn-primary" disabled="">Next</button>
+                            </div>
+                          </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <h6 class="display-6">General options:</h6>
+                            <div class="btn-group btn-group-toggle d-flex" data-toggle="buttons">
+                              <label class="btn btn-outline-secondary active mr-1">
+                                <input type="radio" name="detectionType" checked value="single"> Single pose
+                              </label>
+                              <label class="btn btn-outline-secondary ml-1">
+                                <input type="radio" name="detectionType" value="multiple"> Multiple poses
+                              </label>
+                            </div>
+                            <div class="input-group input-group mb-3 mt-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputResolution" style="width: 150px;">Resolution</label>
+                              </div>
+                              <select class="custom-select" dir="rtl" name="inputResolution" id="inputResolution">
+                                <option value="161">161</option>
+                                <option value="193">193</option>
+                                <option selected value="257">257</option>
+                                <option value="289">289</option>
+                                <option value="321">321</option>
+                                <option value="353">353</option>
+                                <option value="385">385</option>
+                                <option value="417">417</option>
+                                <option value="449">449</option>
+                                <option value="481">481</option>
+                                <option value="513">513</option>
+                                <option value="801">801</option>
+                              </select>
+                            </div>
+                            <div class="input-group input-group mb-3 mt-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="flipHorizontal" style="width: 150px;">Horizontal flip</label>
+                              </div>
+                              <select class="custom-select" dir="rtl" name="flipHorizontal" id="flipHorizontal">
+                                <option selected value="true">yes</option>
+                                <option value="false">no</option>
+                              </select>
+                            </div>
+                            <div class="input-group input-group mb-3 mt-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="outputStride" style="width: 150px;">Output stride</label>
+                              </div>
+                              <select class="custom-select" dir="rtl" name="outputStride" id="outputStride">
+                              </select>
+                            </div>
+                            <div class="f1-buttons mt-4">
+                                <button type="button" class="btn btn-secondary">Previous</button>
+                                <button type="button" class="btn btn-primary">Next</button>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <h6 class="display-6">Fine tuning:</h6>
+                            <div class="input-group input-group mb-3 mt-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="quantBytes" style="width: 150px;">Quantization bytes</label>
+                              </div>
+                              <select class="custom-select" dir="rtl" name="quantBytes" id="quantBytes">
+                                <option value="1">1</option>
+                                <option selected value="2">2</option>
+                                <option value="4">4</option>
+                              </select>
+                            </div>
+                            <div class="input-group input-group mb-3 mt-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="scoreThreshold" style="width: 150px;">Score threshold</label>
+                              </div>
+                              <input type="text" dir="rtl" name="scoreThreshold" value="0.5" class="form-control" id="scoreThreshold">
+                            </div>
+                            <div class="input-group input-group mb-3 mt-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="nmsRadius" style="width: 150px;">Suppress radius</label>
+                              </div>
+                              <input type="text" dir="rtl" name="nmsRadius" value="20" class="form-control" id="nmsRadius">
+                            </div>
+                            <div class="input-group input-group mb-3 mt-3" id="multiplierDiv" style="display: none;">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="multiplier" style="width: 150px;">Multiplier</label>
+                              </div>
+                              <select class="custom-select" dir="rtl" name="multiplier" id="multiplier">
+                                <option value="1.01">1.01</option>
+                                <option value="1.0">1.0</option>
+                                <option value="0.75">0.75</option>
+                                <option selected value="0.50">0.50</option>
+                              </select>
+                            </div>
+                            <div class="input-group input-group mb-3 mt-3" id="maxPosesDiv" style="display: none;">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="maxPoseDetections" style="width: 150px;">Max poses</label>
+                              </div>
+                              <input type="text" dir="rtl" name="maxPoseDetections" value="5" class="form-control" id="maxPoseDetections">
+                            </div>
+                            <div class="f1-buttons">
+                                <button type="button" class="btn btn-secondary">Previous</button>
+                                <button type="button" class="btn btn-primary">Next</button>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <h6 class="display-6">Finalize project:</h6>
+                            <div class="input-group input-group mb-3 mt-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="name" style="width: 150px;">Project name</label>
+                              </div>
+                              <input type="text" name="name" class="form-control" id="name">
+                            </div>
+                            <div class="input-group input-group mb-3 mt-3">
+                              <div class="input-group-prepend">
+                                <label class="input-group-text" for="description" style="width: 150px;">Description</label>
+                              </div>
+                              <textarea class="form-control" aria-label="Description" id="description" name="description"></textarea>
+                            </div>
+                            <div class="f1-buttons">
+                                <button type="button" class="btn btn-secondary">Previous</button>
+                                <button type="submit" id="submit" class="btn btn-submit" disabled>Create</button>
+                            </div>
+                        </fieldset>
+                      
+                      </form>
+                    </div>
+                </div>
+ 
+            </div>
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/jquery-ui-1.13.2.min.js"></script>
+  <script src="js/popper-1.16.0.min.js"></script>
+  <script src="js/bootstrap-4.4.1.min.js"></script>
+  <script src="js/alertify-1.13.1.min.js"></script>
+  <script src="js/new.js"></script>
+</body>
+
+</html>

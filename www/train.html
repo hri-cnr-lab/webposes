@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>WebPoses</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-4.4.1.min.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.13.2.min.css">
+  <link rel="stylesheet" type="text/css" href="css/alertify-1.13.1.min.css">
+  <link rel="stylesheet" type="text/css" href="css/alertify-bootstrap-1.13.1.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+    .bt70 {
+      width: 70px;
+    }
+    .bt100 {
+      width: 100px;
+      height: 98%;
+      margin-top: 0px;
+    }
+  </style>
+</head>
+<html>
+<body>
+  <div class="container">
+
+    <div class="row small justify-content-center mb-2" style="border-bottom: 1px solid;">
+      <div class="col-auto text-center">
+          <h2 class="display-4">WebPoses</h2>
+          <h3 class="display-6">Model Design and Training</h3>
+      </div>
+    </div>
+
+	<div class="row justify-content-center small mt-3">
+		 <div class="col-4 text-right" id="dsName">
+		 </div>
+		 <div class="col-4 text-center" id="dsType">
+		 </div>
+		 <div class="col-4 text-left" id="dsIO">
+		 </div>
+	</div>
+
+	<div class="row justify-content-center small">
+		<div class="col border border-primary rounded mt-4">
+			<div class="row pt-2">
+				<div class="col-4">
+				<table class="table table-borderless table-sm" style="width: 90%;">
+					<tr class="font-weight-bold">
+						<td></td>
+						<td>Layer</td>
+						<td align="center">Dimension</td>
+						<td>Activation</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td style="padding-top: 11px;">Input</td>
+						<td style="padding-top: 4px;" align="center"><input type="text" class="form-control form-control-sm ml-1" id="dimensionIn" readonly style="width: 60px;"></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td style="padding-top: 11px;">Hidden</td>
+						<td style="padding-top: 4px;" align="center"><input type="text" class="form-control form-control-sm ml-1" name="dimension1" id="dimension1" style="width: 60px;"></td>
+						<td>
+							<select id="activation1" class="form-control-sm">
+					        	<option>elu</option>
+					        	<option>hardsigmoid</option>
+					        	<option>linear</option>
+					        	<option>relu</option>
+					        	<option>relu6</option>
+					        	<option>selu</option>
+					        	<option selected>sigmoid</option>
+					        	<option>softmax</option>
+					        	<option>softplus</option>
+					        	<option>softsign</option>
+					        	<option>tanh</option>
+					      	</select>
+						</td>
+					</tr>
+					<tr>
+						<td width="20" style="padding-top: 13px;"><input type="checkbox" id="secondlayer" name="secondlayer" checked=""></td>
+						<td style="padding-top: 11px;">Hidden</td>
+						<td style="padding-top: 4px;" align="center"><input type="text" class="form-control form-control-sm ml-1" name="dimension2" id="dimension2" style="width: 60px;"></td>
+						<td>
+							<select id="activation2" class="form-control-sm">
+					        	<option>elu</option>
+					        	<option>hardsigmoid</option>
+					        	<option>linear</option>
+					        	<option>relu</option>
+					        	<option>relu6</option>
+					        	<option>selu</option>
+					        	<option selected>sigmoid</option>
+					        	<option>softmax</option>
+					        	<option>softplus</option>
+					        	<option>softsign</option>
+					        	<option>tanh</option>
+					      	</select>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td style="padding-top: 11px;">Output</td>
+						<td style="padding-top: 4px;" align="center"><input type="text" class="form-control form-control-sm ml-1" id="dimensionOut" readonly style="width: 60px;"></td>
+						<td>
+							<select id="activationOut" class="form-control-sm">
+					        	<option>elu</option>
+					        	<option>hardsigmoid</option>
+					        	<option>linear</option>
+					        	<option>relu</option>
+					        	<option>relu6</option>
+					        	<option>selu</option>
+					        	<option>sigmoid</option>
+					        	<option selected>softmax</option>
+					        	<option>softplus</option>
+					        	<option>softsign</option>
+					        	<option>tanh</option>
+					      	</select>							
+						</td>
+					</tr>
+				</table>
+				</div>
+
+				<div class="col-4">
+				<table class="table table-borderless table-sm">
+						<tr class="font-weight-bold">
+							<td colspan="2" align="center">Compile parameters</td>
+						</tr>
+						<tr>
+						<td style="padding-top: 10px;" align="right">Optimizer</td>
+						<td>
+							<select id="optimizer" class="form-control-sm">
+					        	<option value="0" selected="">SGD</option>
+					        	<option value="1">Adagrad</option>
+					        	<option value="2">Adadelta</option>
+					        	<option value="3">Adam</option>
+					        	<option value="4">Adamax</option>
+					        	<option value="5">RMSProp</option>
+					      	</select>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding-top: 11px;" align="right">Learning Rate</td>
+						<td><input type="text" class="form-control form-control-sm" name="learningRate" id="learningRate" placeholder="0.2" value="0.2" style="width: 80px;"></td>
+					</tr>
+					<tr>
+						<td style="padding-top: 10px;" align="right">Loss</td>
+						<td>
+							<select id="loss" class="form-control-sm">
+					        	<option>binaryAccuracy</option>
+					        	<option>binaryCrossentropy</option>
+					        	<option>categoricalAccuracy</option>
+					        	<option selected="">categoricalCrossentropy</option>
+					        	<option>cosineProximity</option>
+					        	<option>meanSquaredError</option>
+					      	</select>
+						</td>
+					</tr>
+				</table>
+				</div>
+
+				<div class="col-4">
+				<table class="table table-borderless table-sm">
+					<tr class="font-weight-bold">
+						<td colspan="2" align="center">Training parameters</td>
+					</tr>
+						<tr>
+						<td style="padding-top: 11px;" align="right">Epochs</td>
+						<td style="padding-top: 4px;"><input type="text" class="form-control form-control-sm" id="epochs" placeholder="50" value="50" style="width: 80px;"></td>
+					</tr>
+					<tr>
+						<td style="padding-top: 11px;" align="right">Batch size</td>
+						<td style="padding-top: 4px;"><input type="text" class="form-control form-control-sm" id="batchSize" placeholder="32" value="32" style="width: 80px;"></td>
+					</tr>
+					<tr>
+						<td style="padding-top: 11px;" align="right">Validation split</td>
+						<td style="padding-top: 4px;"><input type="text" class="form-control form-control-sm" id="validationSplit" placeholder="0.1" value="0.1" style="width: 80px;"></td>
+					</tr>
+				</table>
+				</div>
+
+			</div>
+			<div class="row pb-3" style="margin-top: -20px;">
+				<div class="col-12 text-center">
+					<button type="button" class="btn btn-sm btn-primary" id="train">Compile and Train</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div class="row justify-content-center">
+	    <div class="pt-2" style="width: 746px;">
+			<canvas id="canvas"></canvas>
+		</div>
+	</div>
+
+	<div class="form-group row small justify-content-center mt-3">
+		<label for="modelName" class="col-form-label mr-2">Model name</label>
+		<input type="text" class="form-control form-control-sm" id="modelName" placeholder="..." style="width: 200px;">
+		<button type="button" class="btn btn-primary btn-sm bt100 ml-2" id="save" onclick="saveModel()" disabled="">Save</button>
+		<button type="button" class="btn btn-success btn-sm bt100 ml-2" id="close">Close</button>
+    </div>
+
+  </div>
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.13.2.min.js"></script>
+  <script type="text/javascript" src="js/popper-1.16.0.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-4.4.1.min.js"></script>
+  <script type="text/javascript" src="js/alertify-1.13.1.min.js"></script>
+  <script type="text/javascript" src="js/Chart-2.9.3.min.js"></script>
+  <script type="text/javascript" src="js/commons.js"></script>
+  <script type="text/javascript" src="js/train.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+{"detectionType":"single","architecture":"ResNet50","outputStride":32,"inputResolution":257,"flipHorizontal":true,"multiplier":1,"quantBytes":2,"description":""}

@@ -1,0 +1,109 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>WebPoses</title>
+  <!--
+  <script src="https://unpkg.com/ml5@0.4.3/dist/ml5.min.js"></script>
+-->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+  <link rel="stylesheet" href="css/bootstrap-4.4.1.min.css">
+  <link rel="stylesheet" href="css/bootstrap4-toggle-3.6.1.min.css">
+  <link rel="stylesheet" href="css/jquery-ui-1.13.2.min.css">
+  <link rel="stylesheet" href="css/base-timer.css">
+  <link rel="stylesheet" href="css/alertify-1.13.1.min.css">
+  <link rel="stylesheet" href="css/alertify-bootstrap-1.13.1.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="row small justify-content-center mb-2" style="border-bottom: 1px solid;">
+      <div class="col-auto text-center">
+          <h2 class="display-4">WebPoses</h2>
+          <h3 class="display-6">Classify</h3>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+
+      <div id="firstCol" style="flex: 0 0 520px; -ms-flex: 0 0 520px;">
+
+        <div style="width: 100%; text-align: center;">
+          <div style="display: inline-block;">
+            <video id="video" width="514" height="514" playsinline style="display: none;">
+            </video>
+            <canvas id="canvas" width="514" height="514"/>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-4 ml-5">
+
+        <br>
+        <div class="col d-flex justify-content-center">
+          <input type="checkbox" data-toggle="toggle" data-on="Classify" data-off="Classify" data-onstyle="success" data-offstyle="danger" id="classifyPoses">
+        </div>
+        <br>
+
+        <div id="keypointsDiv" style="display: block;">
+          <table class="table table-sm small" id="keypointsTable">
+            <thead>
+              <tr>
+                <th scope="col">Joint</th>
+                <th scope="col">Position</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+
+        <br>
+
+        <div id="targetDiv" style="display: block;">
+          <table class="table">
+            <tr>
+              <th scope="col">Target</th>
+              <th scope="col" id="target" align="right">-</th>
+            </tr>
+            <tr>
+                <th scope="col">Score</th>
+                <th scope="col" id="score" align="right">-</th>
+              </tr>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="text-center mt-5">
+      <input type="button" value="Close" class="btn btn-outline-secondary btn-sm" id="close" style="width: 80px">
+    </div>
+
+  </div>
+
+
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.13.2.min.js"></script>
+  <script type="text/javascript" src="js/popper-1.16.0.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-4.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap4-toggle-3.6.1.min.js"></script>
+  <script type="text/javascript" src="js/alertify-1.13.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery-dataTables-1.10.20.min.js"></script>
+  <script type="text/javascript" src="js/datatables-bs4-1.10.20.min.js"></script>
+  <script type="text/javascript" src="js/lodash-4.12.0.min.js"></script>
+  <script type="text/javascript" src="js/lowdb-0.17.1.min.js"></script>
+  <script type="text/javascript" src="js/lowdb-0.17.1-LocalStorage.min.js"></script>
+  <script type="text/javascript" src="js/commons.js"></script>
+  <script type="text/javascript" src="js/classify.js"></script>
+</body>
+
+</html>

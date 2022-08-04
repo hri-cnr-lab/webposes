@@ -1,0 +1,142 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>GesturesX</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
+  <link rel="stylesheet" href="css/bootstrap-4.4.1.min.css">
+  <link rel="stylesheet" href="css/jquery-ui-1.12.1.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .msg {
+      height: 30px;
+      padding-top: 4px;
+      padding-bottom: 2px;
+      text-align: center;
+    }
+    .bk {
+      width: 240px;
+      height: 240px;
+      margin: auto;
+      border: 0px outset black;
+      background-color: white;
+      text-align: center;
+    }
+    .output {
+      margin-top: 10px;
+      border: 1px outset black;
+      background-color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="row small justify-content-center mb-2" style="border-bottom: 1px solid;">
+      <div class="col-auto text-center">
+          <h2 class="display-4">GesturesX</h2>
+          <h3 class="display-6">Speech-to-Text and Gestures</h3>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+
+      <div id="firstCol" style="flex: 0 0 520px; -ms-flex: 0 0 520px;">
+
+        <div style="width: 100%; text-align: center;">
+          <div style="display: inline-block;">
+            <video id="video" width="514" height="514" playsinline style="display: none;">
+            </video>
+            <canvas id="canvas" width="514" height="514"/>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="secondCol" class="col-4 ml-5">
+
+        <div style="display: inline-block; padding-left: 8px;">
+          <canvas id="meter" width="0" height="20"></canvas>
+        </div>
+
+        <div id="targetDiv" style="display: block; margin-top: 10px;">
+          <table class="table">
+            <tr>
+              <th scope="col">Target</th>
+              <th scope="col" id="target" align="right">-</th>
+            </tr>
+            <tr>
+                <th scope="col">Score</th>
+                <th scope="col" id="score" align="right">-</th>
+              </tr>
+            </tr>
+          </table>
+        </div>
+
+        <div class="bk">
+          <img src="images/Searching4Person.gif" id="Searching4Person"  style=' display: block; height: 100%; width: 100%; object-fit: contain'/>
+          <img src="images/Recording.gif" id="Recording"  style=' display: none; height: 100%; width: 100%; object-fit: contain'/>
+          <img src="images/Eng2Know.gif" id="Eng2Know"  style=' display: none; height: 100%; width: 100%; object-fit: contain'/>
+          <img src="images/Talking.gif" id="Talking"  style=' display: none; height: 100%; width: 100%; object-fit: contain'/>
+          <img src="images/Thinking.gif" id="Thinking"  style=' display: none; height: 100%; width: 100%; object-fit: contain'/>
+          <img src="images/Waiting4Gaze.gif" id="Waiting4Gaze"  style=' display: none; height: 100%; width: 100%; object-fit: contain'/>
+        </div>
+
+        <div id="s2t" class="small" style="margin-top:16px; display: block; border: 1px gray solid; height: 100px; overflow-y: scroll; overflow-x:hidden;"></div>
+
+      </div>
+
+    </div>
+
+    <div class="output row justify-content-center ml-4 mr-4">
+      <div class="col">
+        <table class="table small">
+          <tr>
+            <th colspan=2 scope="col" style="text-align: center">Left arm</th>
+            <th colspan=2 scope="col" style="text-align: center">Right arm</th>
+          </tr>
+          <tr>
+            <td scope="col" align="Left">Normalized wrist kinetic energy: </td>          
+            <td scope="col" id="activityL" align="Left">-</td>
+            <td scope="col" align="left">Normalized wrist kinetic energy: </td>
+            <td scope="col" id="activityR" align="Left">-</td>
+          </tr>
+          <tr>
+            <td scope="col" align="Left">Most active arm: </td>          
+            <td scope="col" id="activeArmL" align="Left">-</td>
+            <td scope="col" align="left">Most active arm: </td>
+            <td scope="col" id="activeArmR" align="Left">-</td>
+          </tr>
+          <tr>
+            <td scope="col" align="Left">Object indicated by the left arm: </td>          
+            <td scope="col" id="objectL" align="Left">-</td>
+            <td scope="col" align="left">Object indicated by the right arm: </td>
+            <td scope="col" id="objectR" align="Left">-</td>
+          </tr>
+          <tr>
+            <td scope="col" align="Left">Grounding: </td>          
+            <td scope="col" id="groundingL" align="Left">-</td>
+            <td scope="col" align="left">Grounding: </td>
+            <td scope="col" id="groundingR" align="Left">-</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="row text-center mt-5">
+      <input type="button" value="Start Recognition" class="btn btn-primary" id="start-recognition" style="width: 200px">
+      <input type="button" value="Stop Recognition" class="btn btn-danger" id="stop-recognition" style="width: 200px">
+    </div>
+
+  </div>
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.12.1.min.js"></script>
+  <script type="text/javascript" src="js/popper-1.16.0.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-4.4.1.min.js"></script>
+  <script type="text/javascript" src="js/gestures-s2t.js"></script>
+</body>
+
+</html>

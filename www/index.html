@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>WebPoses</title>
+  <link rel="icon" href="data:;base64,iVBORwOKGO=" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-4.4.1.min.css">
+  <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.13.2.min.css">
+  <link rel="stylesheet" type="text/css" href="css/alertify-1.13.1.min.css">
+  <link rel="stylesheet" type="text/css" href="css/alertify-bootstrap-1.13.1.min.css">
+  <link rel="stylesheet" type="text/css" href="css/datatables-bs4-1.10.20.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-slider-11.0.2-min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-multiselect-1.0.0.min.css"/>
+  <style>
+    .table > tbody > tr > td {
+      vertical-align: middle;
+    }
+    .bt70 {
+      width: 70px;
+      padding: 0px;
+    }
+    .bt100 {
+      width: 100px;
+      padding: 0px;
+    }
+    .slider-limit-sx {
+      margin-right: 10px;
+    }
+    .slider-limit-dx {
+      margin-left: 5px;
+    }
+    .slider.slider-horizontal .slider-tick.triangle,
+    .slider.slider-horizontal .slider-handle.triangle {
+      border-bottom-color: red;
+    }
+    .multiselect-container > .multiselect-option > span,
+    .multiselect-container .multiselect-group > span {
+      padding: 2px 5px;
+    }
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+
+  <div id="tree"></div>
+
+  <div class="container">
+
+    <div class="row small justify-content-center mb-2" style="border-bottom: 1px solid;">
+      <div class="col-auto text-center">
+          <h2 class="display-4">WebPoses</h2>
+          <h3 class="display-6">Manage Projects</h3>
+      </div>
+    </div>
+
+<!--
+      <div class="row">
+        <div class="col border border-primary rounded mt-4 ml-3 mr-3 p-0" style="display: none;">
+          <div class="alert alert-primary" role="alert">
+            <span>Projects</span> <span class="small" style="float: right; margin-top: 2px;"><button class="btn btn-primary btn-sm bt70" onClick="window.location.replace('new.html');">New</button></span>
+          </div>
+          <div class="row small mb-3">
+            <div class="col ml-3 mr-3">
+                  <table id="ptable" class="table text-left table-sm">
+                    <tbody>
+                    </tbody>
+                  </table>
+            </div>
+          </div>
+        </div>
+      </div>
+-->
+      <div class="row justify-content-center">
+        <div class="col-9 border border-primary rounded mt-4 ml-3 mr-3 p-0">
+          <div class="alert alert-primary" role="alert">
+            Current project: <span id="name" class="font-weight-bold">-</span><br>
+          </div>
+
+<!--
+          <div class="row small">
+            <div class="col col-sm-4 ml-3" style="display: none;">
+              <div class="card">
+                <div class="card-header">
+                  <ul class="nav nav-tabs card-header-tabs" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active disabled" href="#" tabindex="-1" aria-disabled="true">Details</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-body">
+                  <div class="tab-content">
+                    <div class="row">
+                      <div class="col">
+                        architecture:<br>
+                        detectionType:<br>
+                        maxPoseDetections:<br>
+                        inputResolution:<br>
+                        flipHorizontal:<br>
+                        outputStride:<br>
+                        quantBytes:<br>
+                        scoreThreshold:<br>
+                        nmsRadius:<br>
+                        multiplier:
+                      </div>
+                      <div class="col" style="width: 110px;">
+                        <span id="architecture">-</span><br>
+                        <span id="detectionType">-</span><br>
+                        <span id="maxPoseDetections">-</span><br>
+                        <span id="inputResolution">-</span><br>
+                        <span id="flipHorizontal">-</span><br>
+                        <span id="outputStride">-</span><br>
+                        <span id="quantBytes">-</span><br>
+                        <span id="scoreThreshold">-</span><br>
+                        <span id="nmsRadius">-</span><br>
+                        <span id="multiplier">-</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="row" id="project_actions">
+                    <div class="col p-0 ml-3"><button type="button" class="btn btn-outline-primary btn-sm bt70" onclick="editProject()">Edit</button></div>
+                    <div class="col p-0"><button type="button" class="btn btn-outline-success btn-sm bt70" onclick="cloneProject()">Clone</button></div>
+                    <div class="col p-0"><button type="button" class="btn btn-outline-danger btn-sm bt70" onclick="deleteProject()">Delete</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+-->
+            <div class="small" style="margin-top: -17px; width:100%">
+              <div class="card h-100 w-100">
+                <div class="card-header">
+                  <ul class="nav nav-tabs card-header-tabs" id="tab" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link active" id="projects-tab" data-toggle="tab" href="#projects" role="tab" aria-controls="projects" aria-selected="true" onclick="showProjectsActions()">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="datafiles-tab" data-toggle="tab" href="#datafiles" role="tab" aria-controls="datafiles" aria-selected="true" onclick="showDataFilesActions()">Acquisitions</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="datasets-tab" data-toggle="tab" href="#datasets" role="tab" aria-controls="datasets" aria-selected="false" onclick="showDataSetsActions()">DataSets</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="networks-tab" data-toggle="tab" href="#networks" role="tab" aria-controls="networks" aria-selected="false" onclick="showNetworksActions()">Models</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="card-body">
+                  <div class="tab-content" id="nav-tabContent" style="margin-top: -10px;">
+                    <div id="projects_div" class="justify-content-center" style="width:100%; display: none;">
+                      <table id="projects_table" class="table text-left table-sm nowrap" style="width:100%"></table>
+                    </div>
+                    <div id="acquisitions_div" class="justify-content-center" style="width:100%; display: none;">
+                      <table id="acquisitions_table" class="table text-left table-sm nowrap" style="width:100%"></table>
+                    </div>
+                    <div id="datasets_div" class="justify-content-center" style="width:100%; display: none;">
+                      <table id="datasets_table" class="table text-left table-sm nowrap" style="width:100%"></table>
+                    </div>
+                    <div id="models_div" class="justify-content-center" style="width:100%; display: none;">
+                      <table id="models_table" class="table text-left table-sm" style="width:100%"></table>
+                    </div>
+                    <!-- <table id="files_table" class="table text-left table-sm table-responsive nowrap"></table> -->
+                  </div>
+                </div>
+                <div class="card-footer small">
+                  <div class="row" id="projects_actions" style="display: none;">
+                    <div class="col text-center"><button type="button" class="btn btn-outline-primary btn-sm bt100" id="prjNew" onClick="window.location.replace('new.html');">New</button></div>
+                    <div class="col text-center"><button type="button" class="btn btn-outline-success btn-sm bt100" disabled="" id="prjOpen" onclick="prjOpen()">Open</button></div>
+                    <div class="col text-center"><button type="button" class="btn btn-outline-info btn-sm bt100" disabled="" id="prjClone" onclick="prjClone()">Clone</button></div>
+                    <div class="col text-center"><button type="button" class="btn btn-outline-danger btn-sm bt100" disabled="" id="prjRemove" onclick="prjRemove()">Delete</button></div>
+                  </div>
+                  <div class="row" id="datafiles_actions" style="display: none;">
+                    <div class="col text-center"><button type="button" class="btn btn-outline-primary btn-sm bt100" id="dfNew" onclick="dfNew()">New</button></div>
+                    <div class="col text-center"><button type="button" class="btn btn-outline-success btn-sm bt100" disabled="" id="dfOpen" onclick="dfOpen()">Open</button></div>
+                    <div class="col text-center"><button type="button" class="btn btn-outline-danger btn-sm bt100" disabled="" id="dfRemove" onclick="dfRemove()">Delete</button></div>
+                  </div>
+                  <div id="datasets_actions" style="display: none;">
+                     <div class="col text-center"><button type="button" class="btn btn-outline-primary btn-sm bt100" disabled="" id="dsNew" onclick="dsNew()">New</button></div>
+                   <div class="col text-center"><button type="button" class="btn btn-outline-info btn-sm bt100" id="dsRename" onclick="dsRename()">Rename</button></div>
+                    <div class="col text-center"><button type="button" class="btn btn-outline-danger btn-sm bt100" disabled="" id="dsDelete" onclick="dsDelete()">Delete</button></div>
+                  </div>
+                  <div id="networks_actions" style="display: none;">
+                    <div class="col text-center"><button type="button" class="btn btn-outline-success btn-sm bt100" disabled="" id="netNew" onclick="netNew()">New</button></div>
+                    <div class="col text-center"><button type="button" class="btn btn-outline-primary btn-sm bt100" disabled="" id="netClassify" onclick="netClassify()">Classify</button></div>
+                    <div class="col text-center"><button type="button" class="btn btn-outline-success btn-sm bt100" disabled="" id="netDownload" onclick="netDownload()">Download</button></div>
+                    <div class="col text-center"><button type="button" class="btn btn-outline-danger btn-sm bt100" disabled="" id="netH5" onclick="netH5()">Keras Export</button></div>
+                    <div class="col text-center"><button type="button" class="btn btn-outline-info btn-sm bt100" disabled="" id="netRemove" onclick="netRemove()">Delete</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.13.2.min.js"></script>
+  <script type="text/javascript" src="js/popper-1.16.0.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-4.4.1.min.js"></script>
+  <script type="text/javascript" src="js/alertify-1.13.1.min.js"></script>
+  <script type="text/javascript" src="js/jquery-dataTables-1.10.20.min.js"></script>
+  <script type="text/javascript" src="js/datatables-bs4-1.10.20.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-multiselect-1.0.0.min.js"></script>
+  <script>$.fn.slider = null</script>
+  <script type="text/javascript" src="js/bootstrap-slider-11.0.2.min.js"></script>
+  <script type="text/javascript" src="js/lodash-4.12.0.min.js"></script>
+  <script type="text/javascript" src="js/lowdb-0.17.1.min.js"></script>
+  <script type="text/javascript" src="js/lowdb-0.17.1-LocalStorage.min.js"></script>
+  <script type="text/javascript" src="js/commons.js"></script>
+  <script type="text/javascript" src="js/manage.js"></script>
+</body>
+
+</html>
