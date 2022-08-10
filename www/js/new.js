@@ -137,7 +137,7 @@ jQuery(document).ready(function() {
     	// navigation steps / progress steps
     	var current_active_step = $(this).parents('.f1').find('.f1-step.active');
     	var progress_line = $(this).parents('.f1').find('.f1-progress-line');
-    	
+
     	$(this).parents('fieldset').fadeOut(200, function() {
     		// change icons
     		current_active_step.removeClass('active').prev().removeClass('activated').addClass('active');
