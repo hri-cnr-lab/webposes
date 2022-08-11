@@ -132,6 +132,12 @@ jQuery(document).ready(function() {
     	
     });
     
+    // abort
+    $('.f1 .btn-danger').on('click', function() {
+        var thisbutton = $(this);
+        alertify.confirm('Warning','All chosen settings will be lost. Are you sure?', function(){ window.location.href = './'; }, function(){ return; } );
+    });
+
     // previous step
     $('.f1 .btn-secondary').on('click', function() {
     	// navigation steps / progress steps
@@ -183,7 +189,7 @@ jQuery(document).ready(function() {
             dataType: 'json',
             async: true,
             success: function(msg) {
-                alertify.success('Project created', 2, () => { window.location.replace("/"); });
+                alertify.success('Project created', 2, () => { window.location.href = './'; });
             }
         });
     });    

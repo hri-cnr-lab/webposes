@@ -13,7 +13,7 @@
 </head>
 
 <body>
-        <!-- Top content -->
+       <!-- Top content -->
             <div class="container text-center">
                 <h2 class="display-4">WebPoses</h1>
                 <br>&nbsp;<br>
@@ -57,7 +57,7 @@
                               </label>
                             </div>
                             <div class="f1-buttons mt-4">
-                              <button type="button" class="btn btn-secondary" onclick="window.location.href = './'">Cancel</button>
+                              <button type="button" class="btn btn-danger mx-3" onclick="this.blur();">Abort</button>
                               <button type="button" id="firstbutton" class="btn btn-primary" disabled="">Next</button>
                             </div>
                           </div>
@@ -109,8 +109,9 @@
                               </select>
                             </div>
                             <div class="f1-buttons mt-4">
-                                <button type="button" class="btn btn-secondary">Previous</button>
-                                <button type="button" class="btn btn-primary">Next</button>
+                              <button type="button" class="btn btn-danger mx-3" onclick="this.blur();">Abort</button>
+                              <button type="button" class="btn btn-secondary">Previous</button>
+                              <button type="button" class="btn btn-primary">Next</button>
                             </div>
                         </fieldset>
 
@@ -156,8 +157,9 @@
                               <input type="text" dir="rtl" name="maxPoseDetections" value="5" class="form-control" id="maxPoseDetections">
                             </div>
                             <div class="f1-buttons">
-                                <button type="button" class="btn btn-secondary">Previous</button>
-                                <button type="button" class="btn btn-primary">Next</button>
+                              <button type="button" class="btn btn-danger mx-3" onclick="this.blur();">Abort</button>
+                              <button type="button" class="btn btn-secondary">Previous</button>
+                              <button type="button" class="btn btn-primary">Next</button>
                             </div>
                         </fieldset>
 
@@ -176,8 +178,9 @@
                               <textarea class="form-control" aria-label="Description" id="description" name="description"></textarea>
                             </div>
                             <div class="f1-buttons">
-                                <button type="button" class="btn btn-secondary">Previous</button>
-                                <button type="submit" id="submit" class="btn btn-submit" disabled>Create</button>
+                              <button type="button" class="btn btn-danger mx-3" onclick="this.blur();">Abort</button>
+                              <button type="button" class="btn btn-secondary">Previous</button>
+                              <button type="submit" id="submit" class="btn btn-submit" disabled>Create</button>
                             </div>
                         </fieldset>
                       
